@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.v.dao.MoneyDao">
+
+    <!--实体映射-->
+    <resultMap id="MoneyResMap" type="com.v.model.Money">
+        <!---->
+        <id property="id" column="id"/>
+        <!--推荐账号-->
+        <result property="refereeCode" column="referee_code"/>
+        <!--名-->
+        <result property="name" column="name"/>
+        <!--账号-->
+        <result property="userCode" column="user_code"/>
+        <!--金额-->
+        <result property="money" column="money"/>
+        <!--是否转账 0 否 1 是-->
+        <result property="isTransfer" column="is_transfer"/>
+        <!---->
+        <result property="createTime" column="create_time" jdbcType="DATE" javaType="String"/>
+    </resultMap>
+
+
+    <!-- 通用查询结果列-->
+    <sql id="Base_Column_List">
+		 id,	referee_code,	name,	
+		 user_code,	money,	
+		 is_transfer,	create_time
+	</sql>
+
+    <!-- 查询（根据主键ID查询） -->
+    <select id="selectByPrimaryKey" resultMap="MoneyResMap" parameterType="java.lang.Integer">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM g_money
+        WHERE id = #{id}
+    </select>
+
+    <!--删除：根据主键ID删除-->
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		 DELETE FROM g_money
+		 WHERE id = #{id}
+	</delete>
+
+    <!-- 添加 -->
+    <insert id="insert" parameterType="com.v.model.Money">
+		 INSERT INTO g_money
+ 		(id,referee_code,name,user_code,money,is_transfer,create_time) 
+		 VALUES 
+ 		(#{id},#{refereeCode},#{name},#{userCode},#{money},#{isTransfer},now()) 
+	</insert>
+
+    <!-- 添加 （匹配有值的字段）-->
+    <insert id="insertSelective" parameterType="com.v.model.Money">
+        INSERT INTO g_money
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="refereeCode != null">
+                referee_code,
+            </if>
+            <if test="name != null">
+                name,
+            </if>
+            <if test="userCode != null">
+                user_code,
+            </if>
+            <if test="money != null">
+                money,
+            </if>
+            <if test="isTransfer != null">
+                is_transfer,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id!=null">
+                #{id},
+            </if>
+            <if test="refereeCode!=null">
+                #{refereeCode},
+            </if>
+            <if test="name!=null">
+                #{name},
+            </if>
+            <if test="userCode!=null">
+                #{userCode},
+            </if>
+            <if test="money!=null">
+                #{money},
+            </if>
+            <if test="isTransfer!=null">
+                #{isTransfer},
+            </if>
+            <if test="createTime!=null">
+                now(),
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 修 改-->
+    <update id="updateByPrimaryKeySelective" parameterType="com.v.model.Money">
+        UPDATE g_money
+        <set>
+            <if test="refereeCode != null">
+                referee_code = #{refereeCode},
+            </if>
+            <if test="name != null">
+                name = #{name},
+            </if>
+            <if test="userCode != null">
+                user_code = #{userCode},
+            </if>
+            <if test="money != null">
+                money = #{money},
+            </if>
+            <if test="isTransfer != null">
+                is_transfer = #{isTransfer},
+            </if>
+            <if test="createTime != null">
+                create_time = now(),
+            </if>
+
+        </set>
+        WHERE id = #{id}
+    </update>
+
+    <!-- 修 改-->
+    <update id="updateByPrimaryKey" parameterType="com.v.model.Money">
+		 UPDATE g_money
+		 SET 
+			 referee_code = #{refereeCode},
+			 name = #{name},
+			 user_code = #{userCode},
+			 money = #{money},
+			 is_transfer = #{isTransfer},
+			 create_time = now()
+		 WHERE id = #{id}
+	</update>
+
+</mapper>

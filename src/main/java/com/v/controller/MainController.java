@@ -1,6 +1,11 @@
 package com.v.controller;
 
+import com.v.model.User;
+import com.v.service.MoneyService;
+import com.v.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,6 +18,10 @@ import javax.servlet.http.HttpSession;
 @RequestMapping("/")
 public class MainController {
 
+    @Autowired
+    private UserService userService;
+    @Autowired
+    private MoneyService moneyService;
 
     @RequestMapping("/main")
     public String main() {
@@ -21,13 +30,17 @@ public class MainController {
     }
 
     @RequestMapping("/login")
-    public String login(HttpServletRequest request, String username, String password) {
+    public String login(Model model, HttpServletRequest request, String username, String password) {
         HttpSession session = request.getSession();
         System.out.println("============login==========");
-        if ("admin123".equals(username)) {
-            if ("123".equals(password)) {
-                return "/index";
-            }
+        User user = new User();
+        user.setUsername(username);
+        user.setPassword(password);
+        user = userService.login(user);
+        if (user != null) {
+            session.setAttribute("userName", username);
+            model.addAttribute("user",user);
+            return "/index";
         }
         return "redirect:/main";
     }
