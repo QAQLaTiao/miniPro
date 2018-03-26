@@ -6,7 +6,8 @@ import java.io.Serializable;
  * 
  * 
  * 
- **/
+ *
+ * @author QAQ*/
 @SuppressWarnings("serial")
 public class Money implements Serializable {
 
@@ -27,11 +28,19 @@ public class Money implements Serializable {
 
 	/**是否转账 0 否 1 是**/
 	 private Integer isTransfer;
+	/**是否转账 0 否 1 是**/
+	 private Integer yjIsTransfer;
 
 	/****/
 	 private String createTime;
 
+	public Integer getYjIsTransfer() {
+		return yjIsTransfer;
+	}
 
+	public void setYjIsTransfer(Integer yjIsTransfer) {
+		this.yjIsTransfer = yjIsTransfer;
+	}
 
 	public void setId(Integer id){
 		this.id = id;

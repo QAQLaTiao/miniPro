@@ -17,6 +17,8 @@
         <result property="money" column="money"/>
         <!--是否转账 0 否 1 是-->
         <result property="isTransfer" column="is_transfer"/>
+        <!--是否转账 0 否 1 是-->
+        <result property="yjIsTransfer" column="yj_is_transfer"/>
         <!---->
         <result property="createTime" column="create_time" jdbcType="DATE" javaType="String"/>
     </resultMap>
@@ -26,7 +28,7 @@
     <sql id="Base_Column_List">
 		 id,	referee_code,	name,	
 		 user_code,	money,	
-		 is_transfer,	create_time
+		 is_transfer  , yj_is_transfer,	create_time
 	</sql>
 
     <!-- 查询（根据主键ID查询） -->
@@ -46,18 +48,23 @@
     <!-- 添加 -->
     <insert id="insert" parameterType="com.v.model.Money">
 		 INSERT INTO g_money
- 		(id,referee_code,name,user_code,money,is_transfer,create_time) 
+ 		(
+ 		referee_code,name,user_code,
+ 		money,is_transfer,yj_is_transfer,
+ 		create_time
+ 		)
 		 VALUES 
- 		(#{id},#{refereeCode},#{name},#{userCode},#{money},#{isTransfer},now()) 
+ 		(
+ 		#{refereeCode},#{name},#{userCode},
+ 		#{money},0,0,
+ 		now()
+ 		)
 	</insert>
 
     <!-- 添加 （匹配有值的字段）-->
     <insert id="insertSelective" parameterType="com.v.model.Money">
         INSERT INTO g_money
         <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="id != null">
-                id,
-            </if>
             <if test="refereeCode != null">
                 referee_code,
             </if>
@@ -73,10 +80,10 @@
             <if test="isTransfer != null">
                 is_transfer,
             </if>
-            <if test="createTime != null">
-                create_time,
+            <if test="yjIsTransfer != null">
+                yj_is_transfer,
             </if>
-
+            create_time,
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="id!=null">
@@ -97,9 +104,10 @@
             <if test="isTransfer!=null">
                 #{isTransfer},
             </if>
-            <if test="createTime!=null">
-                now(),
+            <if test="yjIsTransfer!=null">
+                #{yjIsTransfer},
             </if>
+            now(),
         </trim>
     </insert>
 
@@ -122,6 +130,9 @@
             <if test="isTransfer != null">
                 is_transfer = #{isTransfer},
             </if>
+            <if test="yjIsTransfer != null">
+                yj_is_transfer = #{yjIsTransfer},
+            </if>
             <if test="createTime != null">
                 create_time = now(),
             </if>
@@ -132,15 +143,16 @@
 
     <!-- 修 改-->
     <update id="updateByPrimaryKey" parameterType="com.v.model.Money">
-		 UPDATE g_money
-		 SET 
-			 referee_code = #{refereeCode},
-			 name = #{name},
-			 user_code = #{userCode},
-			 money = #{money},
-			 is_transfer = #{isTransfer},
-			 create_time = now()
-		 WHERE id = #{id}
+        UPDATE g_money
+            SET
+                referee_code = #{refereeCode},
+                name = #{name},
+                user_code = #{userCode},
+                money = #{money},
+                is_transfer = #{isTransfer},
+                yj_is_transfer = #{yjIsTransfer},
+                create_time = now()
+        WHERE id = #{id}
 	</update>
 
 </mapper>

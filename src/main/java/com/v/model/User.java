@@ -7,7 +7,8 @@ import java.io.Serializable;
  *
  *
  *
- **/
+ *
+ * @author QAQ*/
 @SuppressWarnings("serial")
 public class User implements Serializable {
 

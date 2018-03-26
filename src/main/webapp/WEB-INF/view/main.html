@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>WelCome</title>
+    <meta charset="utf-8">
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/open-iconic-bootstrap.min.css">
+    <link rel="stylesheet" href="/css/icomoon.css">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<section class="probootstrap-cover probootstrap-scene-0">
+    <div class="container">
+        <div class="row probootstrap-vh-100 align-items-center  text-md-left text-sm-center text-center">
+            <div class="col-md-6 order-md-2 order-1">
+                <img id="QRPic" src="/picture/main.jpg" class="img-fluid probootstrap-device-vertical-1"
+                     alt="二维码">
+            </div>
+            <div class="col-md-6 order-md-1 order-2">
+                <div class="probootstrap-text">
+                    <h1 class="probootstrap-heading probootstrap-stagger text-white mb-2">
+                        QSRGRXX
+                    </h1>
+                    <table>
+                        <tr>
+                            <td>
+                                推荐人账号:
+                            </td>
+                            <td>
+                                <label>
+                                    <input id="refereeCode" type="text"/>
+                                </label>
+                            </td>
+                            <td>
+                                可不填
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                支付人信息:
+                            </td>
+                            <td>
+                                <label>
+                                </label>
+                            </td>
+                            <td>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                支付人姓名：
+                            </td>
+                            <td>
+                                <label>
+                                    <input id="name" type="text"/>
+                                </label>
+                            </td>
+                            <td>
+                                <span id="nameErrorMsg">
+                                    如：张成，请输入 成
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                回款支付宝账号：
+                            </td>
+                            <td>
+                                <label>
+                                    <input id="userCode" type="text"/>
+                                </label>
+                            </td>
+                            <td>
+                                 <span id="userCodeErrorMsg">
+                                请准确填写账号，用以系统自动打款。
+                                 </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                付款金额：
+                            </td>
+                            <td>
+                                <label>
+                                    <input id="money" type="text"/>
+                                </label>
+                            </td>
+                            <td>
+                                <span id="moneyErrorMsg">
+                                用于系统核实金额，如填写有误会影响回款。
+                                </span>
+                            </td>
+                        </tr>
+                    </table>
+                    <p class="probootstrap-stagger">
+                        <a onclick="saveForm()" class="btn btn-primary mr-2 mb-2">
+                            <span class="icon-ipad">提交信息</span>
+                        </a>
+                    </p>
+                    <span id="msg">
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer class="probootstrap-footer probootstrap-bg-dark">
+    <div class="container">
+        <div class="row mb-5">
+            <div class="col-md-7 order-md-1 order-2">
+                <p>
+                    如两小时内未收到回款，请联系客服<br/>
+                    QQ：1283213258<br/>
+                    微信：buliangnana<br/>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/popper.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/TweenMax.min.js"></script>
+<script src="/js/ScrollMagic.min.js"></script>
+<script src="/js/debug.addIndicators.min.js"></script>
+<script src="/js/animation.gsap.min.js"></script>
+<script src="/js/main.js"></script>
+<script type="text/javascript">
+
+
+    function saveForm() {
+        $("#QRPic").attr("src", '/images/loding.gif');
+        var refereeCode = $('#refereeCode').val();
+        var name = $('#name').val();
+        var userCode = $('#userCode').val();
+        var money = $('#money').val();
+        var iii = 0;
+        if (name === '' || $.trim(name) === '') {
+            console.log('姓名不能为空！！');
+            iii = 0;
+            $("#nameErrorMsg").html('姓名不能为空！！');
+        } else {
+            iii = 1;
+            $("#nameErrorMsg").html('如：张成，请输入 成');
+        }
+        if (userCode === '' || $.trim(userCode) === '') {
+            console.log('账号不能为空！！');
+            iii = 0;
+            $("#userCodeErrorMsg").html('账号不能为空！！');
+        } else {
+            iii = 1;
+            $("#userCodeErrorMsg").html('请准确填写账号，用以系统自动打款。');
+        }
+        if (money === '' || $.trim(money) === '') {
+            console.log('金额不能为空！！');
+            iii = 0;
+            $("#moneyErrorMsg").html('金额不能为空！！');
+        } else {
+            iii = 1;
+            $("#moneyErrorMsg").html('用于系统核实金额，如填写有误会影响回款。');
+        }
+        if (iii === 1) {
+            var data =
+                {
+                    refereeCode: refereeCode,
+                    name: name,
+                    userCode: userCode,
+                    money: money
+                };
+            console.log(refereeCode);
+            console.log(name);
+            console.log(userCode);
+            console.log(money);
+            $.ajax({
+                url: '/addOrder',
+                data: data,
+                type: 'POST',
+                dataType: "json",
+                contentType: "application/x-www-form-urlencoded;charset=UTF-8",
+                success: function (resultData) {
+                    if (resultData.code === 200) {
+                        console.log(data);
+                        $("#QRPic").attr("src", '/picture/' + resultData.data.url);
+                        $("#msg").html(resultData.msg);
+                    } else {
+                        console.log(resultData);
+                        console.log(resultData.msg);
+                        $("#msg").html(resultData.msg);
+                    }
+                }
+            })
+        } else {
+            $("#QRPic").attr("src", '/picture/main.jpg');
+        }
+    }
+
+</script>
+</body>
+</html>

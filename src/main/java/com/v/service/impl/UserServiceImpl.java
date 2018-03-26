@@ -9,7 +9,8 @@ import org.springframework.stereotype.Service;
 
 /**
  * IUserService数据库操作接口类
- **/
+ *
+ * @author QAQ*/
 @Service
 public class UserServiceImpl implements UserService {
 

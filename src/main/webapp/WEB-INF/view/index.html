@@ -1,32 +1,66 @@
 <sm:template path="/WEB-INF/decorators/main.jsp">
     <sm:component name="content">
-
         <section class="probootstrap-cover probootstrap-scene-0">
             <div class="container">
                 <div class="row probootstrap-vh-100 align-items-center  text-md-left text-sm-center text-center">
                     <div class="col-md-6 order-md-2 order-1">
                         <img src="/picture/${user.pic!}" class="img-fluid probootstrap-device-vertical-1"
-                             alt="Free Bootstrap 4 Template by uicookies.com">
+                             alt="二维码">
                     </div>
                     <div class="col-md-6 order-md-1 order-2">
                         <div class="probootstrap-text">
-                            <h1 class="probootstrap-heading probootstrap-stagger text-white mb-2">Createaaa Beautiful
-                                Websites w/ Our Free Templates</h1>
-                            <p class="mb-5 probootstrap-stagger lead">Far far away, behind the word mountains, far from
-                                the countries Vokalia and Consonantia, there live the blind texts. Separated they live
-                                in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-                            <p class="probootstrap-stagger"><a href="https://uicookies.com/"
-                                                               class="btn btn-primary mr-2 mb-2"><span
-                                    class="icon-ipad"></span>Download For Free</a><a href="https://uicookies.com/"
-                                                                                     class="btn btn-primary btn-outline-white mb-2">Visit
-                                uiCookies
-                                uiCookies</a></p>
+                            <h1 class="probootstrap-heading probootstrap-stagger text-white mb-2">
+                                QSRGRXX
+                            </h1>
+                            <table>
+                                <tr>
+                                    <td>
+                                        用户名:
+                                    </td>
+                                    <td>
+                                        <label>
+                                            <input name="username" type="text"/>
+                                        </label>
+                                    </td>
+                                    <td>
+                                        用户名:
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        密码
+                                    </td>
+                                    <td>
+                                        <label>
+                                            <input name="password" type="password"/>
+                                        </label>
+                                    </td>
+                                    <td>
+                                        用户名:
+                                    </td>
+                                </tr>
+                            </table>
+                            <p class="probootstrap-stagger">
+                                <a onclick="saveForm()" class="btn btn-primary mr-2 mb-2">
+                                    <span class="icon-ipad"></span>
+                                    Download For Free
+                                </a>
+                            </p>
+                            <p id="msg" class="probootstrap-stagger">
+                                11111111111111111111
+                            </p>
                         </div>
                     </div>
-
                 </div>
             </div>
         </section>
+    </sm:component>
+    <sm:component name="js">
+        <script type="text/javascript">
+            function saveForm() {
 
+            }
+
+        </script>
     </sm:component>
 </sm:template>
