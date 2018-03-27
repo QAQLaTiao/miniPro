@@ -17,13 +17,13 @@ public class BaseInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o) throws Exception {
 
         HttpSession session = httpServletRequest.getSession();
-        o = session.getAttribute("username");
+        o = session.getAttribute("userName");
         String username = "";
         if (o != null) {
             username = o.toString();
         }
         if (StringUtils.isEmpty(username)) {
-            httpServletResponse.sendRedirect("/main");
+            httpServletResponse.sendRedirect("/");
         }
         return true;
     }

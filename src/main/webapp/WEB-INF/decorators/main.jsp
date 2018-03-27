@@ -21,17 +21,17 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark probootstrap-navabr-dark">
     <div class="container">
-        <a class="navbar-brand" href="index.html">Present</a>
+        <a class="navbar-brand" href="index.html">WelCome<br/>${user.name}</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#probootstrap-nav" aria-controls="probootstrap-nav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
         <div class="collapse navbar-collapse" id="probootstrap-nav">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item active"><a href="index.html" class="nav-link">Home</a></li>
+                <li class="nav-item active"><a href="/login" class="nav-link">Home</a></li>
                 <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
                 <li class="nav-item"><a href="services.html" class="nav-link">Services</a></li>
-                <li class="nav-item"><a href="login.html" class="nav-link">Contact</a></li>
+                <li class="nav-item"><a href="/QR/main" class="nav-link">QR</a></li>
             </ul>
         </div>
     </div>

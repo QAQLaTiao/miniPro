@@ -25,11 +25,10 @@
                     <table>
                         <tr>
                             <td>
-                                推荐人账号:
                             </td>
                             <td>
                                 <label>
-                                    <input id="refereeCode" type="text"/>
+                                    <input id="refereeCode" type="text" placeholder="推荐人账号"/>
                                 </label>
                             </td>
                             <td>
@@ -37,23 +36,20 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>
+                            <td colSpan="2">
                                 支付人信息:
                             </td>
                             <td>
                                 <label>
                                 </label>
                             </td>
-                            <td>
-                            </td>
                         </tr>
                         <tr>
                             <td>
-                                支付人姓名：
                             </td>
                             <td>
                                 <label>
-                                    <input id="name" type="text"/>
+                                    <input id="name" type="text" placeholder="支付人姓名"/>
                                 </label>
                             </td>
                             <td>
@@ -64,11 +60,10 @@
                         </tr>
                         <tr>
                             <td>
-                                回款支付宝账号：
                             </td>
                             <td>
                                 <label>
-                                    <input id="userCode" type="text"/>
+                                    <input id="userCode" type="text" placeholder="回款支付宝账号"/>
                                 </label>
                             </td>
                             <td>
@@ -79,11 +74,10 @@
                         </tr>
                         <tr>
                             <td>
-                                付款金额：
                             </td>
                             <td>
                                 <label>
-                                    <input id="money" type="text"/>
+                                    <input id="money" type="text" placeholder="付款金额"/>
                                 </label>
                             </td>
                             <td>
@@ -175,7 +169,7 @@
             console.log(userCode);
             console.log(money);
             $.ajax({
-                url: '/addOrder',
+                url: '/QR/addOrder',
                 data: data,
                 type: 'POST',
                 dataType: "json",

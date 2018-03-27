@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * @author QAQ
  */
 @Controller
-@RequestMapping("/")
+@RequestMapping("/QR")
 public class MainController {
 
 
@@ -23,7 +23,7 @@ public class MainController {
     @RequestMapping("/main")
     public String main() {
         System.out.println("============main==========");
-        return "main";
+        return "qr/main";
     }
 
     @RequestMapping("/addOrder")

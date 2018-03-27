@@ -20,7 +20,7 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping("/toLogin")
+    @RequestMapping("/")
     public String toLogin() {
         System.out.println("============toLogin==========");
         return "login";
@@ -39,7 +39,7 @@ public class UserController {
             model.addAttribute("user", user);
             return "/index";
         }
-        return "redirect:/main";
+        return "redirect:/";
     }
 
 }
