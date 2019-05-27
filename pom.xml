@@ -159,11 +159,11 @@
             <artifactId>sitemesh</artifactId>
             <version>3.0-alpha-1</version>
         </dependency>
-        <dependency>
+<!--        <dependency>
             <groupId>com.sqq</groupId>
             <artifactId>sitemesh-extend</artifactId>
             <version>1.0-SNAPSHOT</version>
-        </dependency>
+        </dependency>-->
 
         <!-- servlet api -->
         <dependency>
